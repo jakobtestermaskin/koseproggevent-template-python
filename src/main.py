@@ -6,7 +6,6 @@ import tic_tac
 
 
 def handler(event, context):
-    print(event)
 
     body = json.loads(event['body'])
     _legal_moves = body['legalMoves']
