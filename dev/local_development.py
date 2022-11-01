@@ -5,11 +5,13 @@ import sys
 sys.path.append("../src")
 
 # Must be imported after module have been appended
-from handle_next_move_call import handle_next_move
+from config import get_config
 from move import Move
+from handle_next_move_call import handle_next_move
 
 api = Flask(__name__)
 CORS(api)
+
 
 @api.route("/", methods=["POST"])
 def handleTicTac():
@@ -20,6 +22,11 @@ def handleTicTac():
     current_player = request.json['currentPlayer']
     history = request.json['history']
     return handle_next_move(board, legal_moves, current_player, history)
+
+
+@api.route("/", methods=["GET"])
+def handleConfig():
+    return get_config()
 
 
 if __name__ == '__main__':
