@@ -26,3 +26,7 @@ fra dev-mappen for å kjøre lokalt.
 ## Utvikle AI
 
 Endre filen [tic_tac.py](/src/tic_tac.py) under [src](/src) for å utvikle ai-algoritmen videre.
+
+## Endre lagnavn!
+
+Dersom du ønsker å endre lagnavn kan du enkelt gjøre dette ved å endre verdien under [config.py](/src/config.py). Etter dette er pushet til github og deployed hos AWS [tar ca 20 sekunder] vil du se endringen i webappen.
