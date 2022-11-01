@@ -2,27 +2,27 @@
 from move import Move
 import tic_tac
 
+
 def handler(event, context):
-    
+    print(event)
+
     body = event['body']
     _legal_moves = body['legalMoves']
     response = {}
-
-    import json
-    return {"body": json.dumps(body)}
 
     if (len(_legal_moves) != 0):
 
         board = body['board']
 
         legal_moves = [Move(x=it['x'], y=it['y'], player=it['player'])
-                    for it in _legal_moves]
+                       for it in _legal_moves]
 
         current_player = body['currentPlayer']
         history = body['history']
 
-        try: 
-            move = tic_tac.next_move(board, legal_moves, current_player, history)
+        try:
+            move = tic_tac.next_move(
+                board, legal_moves, current_player, history)
             response = {"move": move.serialize()}
         except:
             reponse = {"error": "Applicaiton catched an error"}
