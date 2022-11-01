@@ -11,7 +11,6 @@ from move import Move
 api = Flask(__name__)
 CORS(api)
 
-
 @api.route("/", methods=["POST"])
 def handleTicTac():
     board = request.json['board']
@@ -20,7 +19,7 @@ def handleTicTac():
 
     current_player = request.json['currentPlayer']
     history = request.json['history']
-    return {"move": handle_next_move(board, legal_moves, current_player, history)}
+    return handle_next_move(board, legal_moves, current_player, history)
 
 
 if __name__ == '__main__':
