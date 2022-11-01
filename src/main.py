@@ -1,4 +1,6 @@
 
+import json
+
 from move import Move
 import tic_tac
 
@@ -6,7 +8,7 @@ import tic_tac
 def handler(event, context):
     print(event)
 
-    body = event['body']
+    body = json.loads(event['body'])
     _legal_moves = body['legalMoves']
     response = {}
 
