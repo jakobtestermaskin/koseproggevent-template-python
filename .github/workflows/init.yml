@@ -1,0 +1,35 @@
+name: "Initialize repository"
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  initialize:
+    runs-on: ubuntu-latest
+    if: github.event.repository.name != 'koseproggevent-template'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get funciton url
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "eu-west-1"
+          GROUP_NAME: ${{ github.event.repository.name }}
+        run: |
+          FUNCTION_URL=$(GROUP=$(echo $GROUP_NAME | cut -d '-' -f 1) && aws lambda get-function-url-config --function-name koseproggevent-$GROUP-implementation | jq .FunctionUrl)
+          NAME_PREFIX="$(echo "$GROUP_NAME" | cut -d'-' -f1)"
+          echo $FUNCTION_URL
+          sed -i "s/<name-prefix>/$NAME_PREFIX/g" README.md
+          sed -i "s,<function-name>,$FUNCTION_URL,g" README.md
+          rm .github/workflows/init.yml
+      - name: Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit --amend --no-edit
+          git push --force
