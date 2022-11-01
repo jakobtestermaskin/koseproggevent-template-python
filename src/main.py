@@ -3,7 +3,6 @@ import json
 from handle_next_move_call import handle_next_move
 
 from move import Move
-import tic_tac
 
 
 def get_attributes(eventBodyString):
