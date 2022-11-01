@@ -7,7 +7,7 @@ import tic_tac
 
 def handler(event, context):
 
-    http = json.loads(event['http'])
+    http = event['http']['requestContext']
     method = http['method']
     print("Received event with method: %s" % method)
     body = json.loads(event['body'])
