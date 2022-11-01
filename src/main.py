@@ -5,13 +5,14 @@ import tic_tac
 def handler(event, context):
     
     body = event['body']
+    _legal_moves = body['legalMoves']
     response = {}
-    if (len(legal_moves) != 0):
+    if (len(_legal_moves) != 0):
 
         board = body['board']
 
         legal_moves = [Move(x=it['x'], y=it['y'], player=it['player'])
-                    for it in body['legalMoves']]
+                    for it in _legal_moves]
 
         current_player = body['currentPlayer']
         history = body['history']
