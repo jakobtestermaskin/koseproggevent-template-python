@@ -8,6 +8,12 @@ For å gjøre dette trenger du bare å endre koden i index.js-filen. Deretter ka
 
 ## Kjøre lokalt
 
+Først må du installere flask og flask-cors.
+
+```bash
+pip install flask && pip install flask-cors
+```
+
 For å kjøre applikasjonen lokalt kan man bruke local_development.py til å spinne opp en "lambda" lokalt.
 Bruk kommandoen:
 
