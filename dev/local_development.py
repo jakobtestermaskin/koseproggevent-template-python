@@ -18,11 +18,12 @@ CORS(api)
 def handleTicTac():
 
     board = request.json['board']
+    _legal_moves = request.json['legalMoves']
 
-    if (len(legal_moves) != 0):
+    if (len(_legal_moves) != 0):
 
         legal_moves = [Move(x=it['x'], y=it['y'], player=it['player'])
-                    for it in request.json['legalMoves']]
+                    for it in _legal_moves]
 
         current_player = request.json['currentPlayer']
         history = request.json['history']
