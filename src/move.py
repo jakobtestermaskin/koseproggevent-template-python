@@ -1,3 +1,8 @@
+"""
+Her kan du gjøre endringer, men det er ikke anbefalt
+"""
+
+
 class Move:
     def __init__(self, x, y, player):
         self.x = x

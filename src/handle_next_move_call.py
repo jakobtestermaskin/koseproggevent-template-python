@@ -1,4 +1,6 @@
-
+"""
+Ikke gjør endringer her
+"""
 import tic_tac
 import traceback
 

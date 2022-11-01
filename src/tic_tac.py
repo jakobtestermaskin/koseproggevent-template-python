@@ -1,3 +1,8 @@
+"""
+Jobb i denne filen for å gjøre endringer på algoritmen så du slår de andre!!
+"""
+
+
 from move import Move
 
 

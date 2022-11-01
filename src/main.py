@@ -1,5 +1,8 @@
-
+"""
+Ikke gjør endringer her
+"""
 import json
+from config import get_config
 from handle_next_move_call import handle_next_move
 
 from move import Move
@@ -34,3 +37,6 @@ def handler(event, context):
             return {"statusCode": 200, "body": json.dumps(response)}
         except:
             return {"statusCode": 500, "body": json.dumps({"error": "Seems to be error with setup."})}
+
+    elif (method == "GET"):
+        return {"statusCode": 200, "body": json.dumps(get_config())}
