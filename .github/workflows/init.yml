@@ -1,6 +1,8 @@
 name: "Initialize repository"
 
 on:
+  workflow_dispatch:
+    
   schedule:
     - cron: "*/5 * * * *"
 
