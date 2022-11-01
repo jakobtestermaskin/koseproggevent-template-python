@@ -7,6 +7,10 @@ def handler(event, context):
     body = event['body']
     _legal_moves = body['legalMoves']
     response = {}
+
+    import json
+    return {"body": json.dumps(body)}
+
     if (len(_legal_moves) != 0):
 
         board = body['board']
