@@ -10,7 +10,7 @@ permissions:
 jobs:
   initialize:
     runs-on: ubuntu-latest
-    if: github.event.repository.name != 'koseproggevent-template'
+    if: github.event.repository.name != 'koseproggevent-template-python'
     steps:
       - uses: actions/checkout@v3
       - name: Get funciton url
