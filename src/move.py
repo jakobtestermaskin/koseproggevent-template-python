@@ -8,5 +8,4 @@ class Move:
         return {
             "x": self.x,
             "y": self.y,
-            "player": self.player
         }
