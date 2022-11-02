@@ -1,7 +1,6 @@
 
 def get_config():
     return {
-        # "groupName": "group-<group-number>",
-        "groupName": "Lorgens svømmere",
+        "groupName": "group-<group-number>",
         "groupNumber": "<group-number>"
     }
