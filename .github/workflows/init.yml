@@ -27,6 +27,7 @@ jobs:
           echo $FUNCTION_URL
           sed -i "s/<name-prefix>/$NAME_PREFIX/g" README.md
           sed -i "s,<function-name>,$FUNCTION_URL,g" README.md
+          sed -i "s,<group-number>,$GROUP_NAME,g" src/config.py
           rm .github/workflows/init.yml
       - name: Push
         run: |
