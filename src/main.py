@@ -15,8 +15,10 @@ def get_attributes(eventBodyString):
     legal_moves = [Move(x=it['x'], y=it['y'], player=it['player'])
                    for it in body['legalMoves']]
 
+    history = [Move(x=it['x'], y=it['y'], player=it['player'])
+               for it in body['history']]
+
     current_player = body['currentPlayer']
-    history = body['history']
     return (board, legal_moves, current_player, history)
 
 

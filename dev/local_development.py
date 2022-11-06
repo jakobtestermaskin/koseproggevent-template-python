@@ -19,8 +19,11 @@ def handleTicTac():
     legal_moves = [Move(x=it['x'], y=it['y'], player=it['player'])
                    for it in request.json['legalMoves']]
 
+    history = [Move(x=it['x'], y=it['y'], player=it['player'])
+                   for it in request.json['history']]
+    
+
     current_player = request.json['currentPlayer']
-    history = request.json['history']
     return handle_next_move(board, legal_moves, current_player, history)
 
 
