@@ -6,7 +6,7 @@ Jobb i denne filen for å gjøre endringer på algoritmen så du slår de andre!
 from move import Move
 
 
-def next_move(board, legal_moves, current_player, history):
+def next_move(board: list[list[str]], legal_moves: list[Move], current_player: str, history: list[Move]):
     """
     Examples:
     board = [[" ", "X", "O"], ["O", "X", " "], [" ", "X", " "]]
