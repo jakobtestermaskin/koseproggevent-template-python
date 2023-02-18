@@ -6,30 +6,30 @@ VERTICAL = "│"
 FULL = "🞡"
 
 class GameSim:
-    def __init__(self, board: list[list[str]], currentPlayer: str):
+    def __init__(self, board: list[list[str]], current_player: str):
         self.board = board
         self.history: list[Move] = []
-        self.currentPlayer: str = currentPlayer
+        self.current_player: str = current_player
 
     @classmethod
-    def createEmpty(cls, currentPlayer):
-        return cls([[" " for y in range(3)]for x in range(3)], currentPlayer)
+    def create_empty(cls, current_player: str):
+        return cls([[" " for y in range(3)]for x in range(3)], current_player)
      
-    def doMove(self, move: Move):
-        prevValue = self.board[move.x][move.y]
-        if prevValue != self.currentPlayer and prevValue != " ":
+    def do_move(self, move: Move):
+        prev_value = self.board[move.x][move.y]
+        if prev_value != self.current_player and prev_value != " ":
             self.board[move.x][move.y] = FULL
         else:
             self.board[move.x][move.y]
 
-        self.currentPlayer = VERTICAL if self.currentPlayer == HORIZONTAL else HORIZONTAL
+        self.current_player = VERTICAL if self.current_player == HORIZONTAL else HORIZONTAL
         self.history.append(move)
 
-    def getCell(self, x:int, y:int):
+    def get_cell(self, x:int, y:int):
         return self.board[x][y]
 
-    def getWinner(self):
-        winningCombinations = [
+    def get_winner(self):
+        winning_combinations = [
             [
                 [0, 0],
                 [0, 1],
@@ -71,19 +71,19 @@ class GameSim:
                 [2, 0],
             ],
         ];
-        for combination in winningCombinations:
+        for combination in winning_combinations:
             [a,b,c] = combination
             if self.board[a[0]][a[1]] == FULL and self.board[a[0]][a[1]] == self.board[b[0]][b[1]] and self.board[a[0]][a[1]] == self.board[c[0]][c[1]]:
                 return self.history[-1].player
             return " " 
 
-    def moveIsLegal(self, move: Move):
-        oldValue = self.getCell(move.x, move.y)
-        alreadyPlaced = oldValue == FULL or oldValue == move.player
-        lastMove = self.history[-1]
-        placedLastMove = lastMove.x == move.x and lastMove.y == move.y
-        return not alreadyPlaced and not placedLastMove
+    def move_is_legal(self, move: Move):
+        old_value = self.get_cell(move.x, move.y)
+        already_placed = old_value == FULL or old_value == move.player
+        last_move = self.history[-1]
+        placed_last_move = last_move.x == move.x and last_move.y == move.y
+        return not already_placed and not placed_last_move
 
-    def getLegalMoves(self):
-        allMoves = [Move(i % 3, i // 3, self.currentPlayer) for i in range(9)]
-        return list(filter(self.moveIsLegal, allMoves))
+    def get_legal_moves(self):
+        all_moves = [Move(i % 3, i // 3, self.current_player) for i in range(9)]
+        return list(filter(self.move_is_legal, all_moves))
