@@ -1,9 +1,9 @@
 from move import Move
 
 EMPTY = " "
-HORIZONTAL = "─"
-VERTICAL = "│" 
-FULL = "🞡"
+HORIZONTAL = "-"
+VERTICAL = "|" 
+FULL = "+"
 
 class GameSim:
     def __init__(self, board: list[list[str]], current_player: str, history: list[Move]):
@@ -16,7 +16,7 @@ class GameSim:
         """Create a new GameSim with an empty board and history. This is the same as starting a new game.
 
         Args:
-            current_player (str): "│" or "─"
+            current_player (str): "|" or "-"
 
         Returns:
             GameSim: The GameSim
@@ -46,7 +46,7 @@ class GameSim:
             y (int): y coordinate, top to bottom
 
         Returns:
-            str (" ", "│", "─" or "🞡"): The value of the cell
+            str (" ", "|", "-" or "+"): The value of the cell
         """
         return self.board[x][y]
 

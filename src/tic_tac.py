@@ -7,9 +7,9 @@ from game_sim import GameSim
 
 # De fire verdiene en rute kan ha
 EMPTY = " "
-HORIZONTAL = "─"
-VERTICAL = "│" 
-FULL = "🞡"
+HORIZONTAL = "-"
+VERTICAL = "|" 
+FULL = "+"
 
 def next_move(board: list[list[str]], legal_moves: list[Move], current_player: str, history: list[Move]) -> Move:
     """
@@ -23,7 +23,7 @@ def next_move(board: list[list[str]], legal_moves: list[Move], current_player: s
     7 | 8 | 9
 
     Things to know:
-    - moves always use the Move class: Move(x = x, y = y, player = "│" or "─")
+    - moves always use the Move class: Move(x = x, y = y, player = "|" or "-")
     - board is mapped with board[y][x] so in the example above, board[0][2] = O, in the upper right corner
 
     legal_moves = [Move()...]
@@ -39,5 +39,5 @@ def next_move(board: list[list[str]], legal_moves: list[Move], current_player: s
     # First available Move
     move = legal_moves[0]
 
-    # move is of type Move(x = x, y = y, player = "│" or "─"), but we know we will be player "current_player"
+    # move is of type Move(x = x, y = y, player = "|" or "-"), but we know we will be player "current_player"
     return Move(x=move.x, y=move.y, player=current_player)
