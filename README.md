@@ -2,6 +2,8 @@
 
 Velkommen <name-prefix>!
 
+Du finner webappen for å teste spillet på: [aibattles.koseprogg.no](https://aibattles.koseprogg.no)
+
 I dag skal vi programmere en BOT som spiller [TickoaTTwo](https://www.youtube.com/watch?v=ePxrVU4M9uA) (Også kjent som Better Tic-Tac-Toe)
 
 For å gjøre dette trenger du bare å endre koden i [toc_tac.py](/src/tic_tac.py)-filen. Deretter kan du pushe til github og så vil github actions pushe dette videre i skyen og bli deployet på <function-name>
