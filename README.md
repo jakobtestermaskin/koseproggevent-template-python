@@ -8,6 +8,45 @@ I dag skal vi programmere en BOT som spiller [TickoaTTwo](https://www.youtube.co
 
 For å gjøre dette trenger du bare å endre koden i [toc_tac.py](/src/tic_tac.py)-filen. Deretter kan du pushe til github og så vil github actions pushe dette videre i skyen og bli deployet på <function-name>
 
+## Kjør med docker compose
+
+Den aller letteste måten å kjøre prosjektet lokalt på er med docker compose! En kommando og du er i gang.
+
+Vi har lagt ved en docker-compose-fil som gjør at det eneste du trenger å gjøre er å kjøre:
+
+```bash
+docker compose up
+```
+
+PS: Klager docker på at compose ikke er et keyword? Kanskje du kjører en gammel versjon av docker. Bruk da `docker-compose up`
+
+Hint: Bruk CTRL+C for å avslutte containeren når du er ferdig.
+
+## Kjør med docker
+
+Vi har lagt ved en [Dockerfile](Dockerfile) som bygger et development bilde av appen.
+Merk! Dockerfilen krever at man mounter filsystemet, ettersom denne er ment for å støtte [Hot Reload](https://learn.microsoft.com/en-us/visualstudio/debugger/hot-reload?view=vs-2022).
+
+For å kjøre med docker må du først bygge bildet:
+
+```bash
+docker build -t <du-velger-selv-hva-du-vil-kalle-det> .
+```
+
+Vi foreslår at du kaller det koseprogg-ai. Da blir kommandoen:
+
+```bash
+docker build -t koseprogg-ai .
+```
+
+Mount src, samt åpne port 8000 for å kjøre koden. Husk å bruke samme tag som du har valgt over:
+
+```bash
+docker run -v $(pwd)/src:/src -p 8000:8000 koseprogg-ai
+```
+
+Kommandoen over vil gjøre at containeren kjører, og vil oppdateres når du lagrer filer i src-mappen. Det er ikke nødvendig å kjøre denne igjen etter en oppdatering.
+
 ## Kjøre lokalt
 
 Først må du installere flask og flask-cors.
