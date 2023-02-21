@@ -2,11 +2,14 @@ from move import Move
 
 EMPTY = " "
 HORIZONTAL = "-"
-VERTICAL = "|" 
+VERTICAL = "|"
 FULL = "+"
 
+
 class GameSim:
-    def __init__(self, board: list[list[str]], current_player: str, history: list[Move]):
+    def __init__(
+        self, board: list[list[str]], current_player: str, history: list[Move]
+    ):
         self.board = board
         self.history: list[Move] = history
         self.current_player: str = current_player
@@ -21,24 +24,26 @@ class GameSim:
         Returns:
             GameSim: The GameSim
         """
-        return cls([[" " for y in range(3)]for x in range(3)], current_player, [])
-     
+        return cls([[" " for _ in range(3)] for _ in range(3)], current_player, [])
+
     def do_move(self, move: Move):
         """Does a move, modifying the state of the simulator
 
         Args:
             move (Move): The move to do
         """
-        prev_value = self.board[move.x][move.y]
+        prev_value = self.board[move.y][move.x]
         if prev_value != self.current_player and prev_value != " ":
-            self.board[move.x][move.y] = FULL
+            self.board[move.y][move.x] = FULL
         else:
-            self.board[move.x][move.y]
+            self.board[move.y][move.x] = move.player
 
-        self.current_player = VERTICAL if self.current_player == HORIZONTAL else HORIZONTAL
+        self.current_player = (
+            VERTICAL if self.current_player == HORIZONTAL else HORIZONTAL
+        )
         self.history.append(move)
 
-    def get_cell(self, x:int, y:int) -> str:
+    def get_cell(self, x: int, y: int) -> str:
         """Get the value of the cell at the given position.
 
         Args:
@@ -48,7 +53,7 @@ class GameSim:
         Returns:
             str (" ", "|", "-" or "+"): The value of the cell
         """
-        return self.board[x][y]
+        return self.board[y][x]
 
     def get_winner(self):
         """Get the winner of the board, or None if no winner.
@@ -97,12 +102,16 @@ class GameSim:
                 [1, 1],
                 [2, 0],
             ],
-        ];
+        ]
         for combination in winning_combinations:
-            [a,b,c] = combination
-            if self.board[a[0]][a[1]] == FULL and self.board[a[0]][a[1]] == self.board[b[0]][b[1]] and self.board[a[0]][a[1]] == self.board[c[0]][c[1]]:
+            [a, b, c] = combination
+            if (
+                self.board[a[0]][a[1]] == FULL
+                and self.board[a[0]][a[1]] == self.board[b[0]][b[1]]
+                and self.board[a[0]][a[1]] == self.board[c[0]][c[1]]
+            ):
                 return self.history[-1].player
-            return " " 
+        return None
 
     def move_is_legal(self, move: Move) -> bool:
         """Check if a move is legal in the current state
@@ -117,8 +126,10 @@ class GameSim:
             return False
         old_value = self.get_cell(move.x, move.y)
         already_placed = old_value == FULL or old_value == move.player
-        last_move = self.history[-1]
-        placed_last_move = last_move.x == move.x and last_move.y == move.y
+        placed_last_move = False
+        if len(self.history) > 0:
+            last_move = self.history[-1]
+            placed_last_move = last_move.x == move.x and last_move.y == move.y
         return not already_placed and not placed_last_move
 
     def get_legal_moves(self) -> list[Move]:
